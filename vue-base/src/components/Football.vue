@@ -1,6 +1,6 @@
 <template>
   <div class="container container-fluid">
-    <League cols="3"></League>
+    <League :cols="3"></League>
   </div>
 </template>
 <script>

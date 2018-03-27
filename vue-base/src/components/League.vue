@@ -35,20 +35,22 @@ export default {
     return {
       leagues: [],
       teams: [],
-      selectedLeague: 0
+      selectedLeague: 0,
+      leagueId : null
     }
   },
   watch: {
     selectedLeague: function (val) {
-      const league = this.leagues.filter(item => item.id === val)[0]
-      LeagueService.getLeague(league)
+      this.league = this.leagues.filter(item => item.id === val)[0]
+      LeagueService.getLeague(this.league)
         .then(payload => (this.teams = payload.teams))
     }
   },
   methods: {
       showTeam : function (item)  {
           const teamId = item._links.self.href.substr(item._links.self.href.lastIndexOf("/") +1);
-          this.$router.push({ path: `/team/${teamId}` })
+          const leagueId = this.league._links.self.href.substr(item._links.self.href.lastIndexOf("/") +1);
+          this.$router.push({ path: `/league/${this.league.id}/team/${teamId}` })
       },
     getSplittedTeams: (items, numberCols) => {
       if (items === undefined) {

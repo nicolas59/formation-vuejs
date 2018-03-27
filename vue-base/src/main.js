@@ -16,10 +16,14 @@ Vue.use(VueResource)
 Vue.use(VueRouter)
 
 Vue.component('bf-table', Buefy.Table)
+Vue.component('bf-table-column', Buefy.TableColumn)
+
+Vue.component('bf-tabs', Buefy.Tabs)
+Vue.component('bf-tab-item', Buefy.TabItem)
 
 const routes = [
   { path: '/league', component: Football },
-  { path: '/team/:id', component: Team, props: true }
+  { path: '/league/:leagueId/team/:id', component: Team, props: true }
 ]
 
 const router = new VueRouter({
